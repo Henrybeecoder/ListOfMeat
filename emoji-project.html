@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+       
+        body{
+            background: rgb(230, 14, 176);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 80vh;
+        }
+        .emoji{
+            background: yellow;
+            width: 300px;
+            height: 300px;
+            border-radius: 50%;
+        }
+        .eyes{
+            display: flex;
+            
+            align-items: center;
+            justify-content: center;
+            margin-top: 80px;
+        }
+        .eye{
+            margin: 10px;
+            background: white;
+            width: 70px;
+            height: 70px;
+            border-radius: 50%;
+        }
+        .emoji::before{
+            content: "";
+            background: green;
+            position: absolute;
+            width: 180px;
+            height: 70px;
+            top: 300px;
+            right: 590px;
+            border-bottom-left-radius: 70px;
+            border-bottom-right-radius: 70px;
+            transition: 0.5s;
+        }
+        .emoji:hover::before{
+            content: "";
+            background: orange;
+            position: absolute;
+            width: 180px;
+            height: 30px;
+            top: 300px;
+            right: 590px;
+            border-bottom-left-radius: 0px;
+            border-bottom-right-radius: 0px;
+        }
+        .eye::before{
+            content: "";
+            position: absolute;
+            background: black;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            top: 35%;
+            
+            
+        }
+
+    </style>
+</head>
+<body>
+    <div class="emoji">
+        <div class="eyes">
+            <div class="eye"></div>
+            <div class="eye"></div>
+        </div>
+    </div> 
+    
+    <script>
+        var body = document.querySelector('body');
+        body.addEventListener('mousemove', () => {
+            var eye = document.querySelectorAll('.eye');
+            eye.forEach(function(eye){
+                let x = (eye.getBoundingClientRect().left) + (eye.clientWidth / 2);
+                let y = (eye.getBoundingClientRect().top) + (eye.clientHeight / 2);
+                let radian = Math.atan2(event.pageX - x, event.pageY - y);
+                let rot = (radian * (180 / Math.PI) * -1) + 0;
+                eye.style.transform = "rotate("+rot +"deg)";
+            })
+        })
+    </script>
+</body>
+</html>
